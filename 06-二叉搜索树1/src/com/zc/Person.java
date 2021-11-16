@@ -26,4 +26,11 @@ public class Person implements Comparable<Person> {
 		return age - e.age;
 	}
 
+	
+	@Override
+	public String toString() {
+//		return "age=" + age;
+		return "age=" + age;
+	}
+	
 }
