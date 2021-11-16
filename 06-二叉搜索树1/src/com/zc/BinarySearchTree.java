@@ -1,8 +1,10 @@
 package com.zc;
 import java.util.Comparator;
 
-public class BinarySearchTree<E> {
+import com.zc.printer.BinaryTreeInfo;
 
+public class BinarySearchTree<E> implements BinaryTreeInfo {
+	
 	private int size;
 	private Node<E> root; // 根节点
 	private Comparator<E> comparator; // 比较器
@@ -112,5 +114,27 @@ public class BinarySearchTree<E> {
 			this.parent = parent;			
 		}
 	}
+	
+	
+	@Override
+	public Object root() {
+		return root;
+	}
+	
+	@Override
+	public Object left(Object node) {
+		return ((Node<E>)node).left;
+	}
+	
+	@Override
+	public Object right(Object node) {
+		return ((Node<E>)node).right;
+	}
+	
+	@Override
+	public Object string(Object node) {
+		return ((Node<E>)node).element;
+	}
+	
 	
 }

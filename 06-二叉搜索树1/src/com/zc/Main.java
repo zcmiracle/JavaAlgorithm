@@ -1,9 +1,16 @@
 package com.zc;
 
 import java.util.Comparator;
+import java.util.Iterator;
+
+import com.zc.printer.BinaryTreeInfo;
+import com.zc.printer.BinaryTrees;
+import com.zc.printer.BinaryTrees.PrintStyle;
 
 public class Main {
 
+//	BinaryTreeI
+	
 	public static class PersonComparator1 implements Comparator<Person> {
 		public int compare(Person e1, Person e2) {
 			return e1.getAge() - e2.getAge();
@@ -19,13 +26,13 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		// 匿名函数 block-oc 闭包swift
-		BinarySearchTree<Person> bst1 = new BinarySearchTree<>(new Comparator<Person>() {
-			@Override
-			public int compare(Person p1, Person p2) {
-				return 0;
-			}
-		});
+		// 匿名函数 block-oc，闭包swift
+//		BinarySearchTree<Person> bst1 = new BinarySearchTree<>(new Comparator<Person>() {
+//			@Override
+//			public int compare(Person p1, Person p2) {
+//				return 0;
+//			}
+//		});
 
 		BinarySearchTree<Person> bst2 = new BinarySearchTree<>(new PersonComparator1());
 		bst2.add(new Person(12));
@@ -36,11 +43,16 @@ public class Main {
 		bst3.add(new Person(21));
 		
 		Integer data[] = new Integer[] {
-			7, 4, 9, 2, 5, 8, 11, 3
+			7, 4, 9, 2, 5, 8, 11, 3, 10, 1
 		};
 		
-		
+		BinarySearchTree<Integer> bst = new BinarySearchTree<>();
+		for (int i = 0; i < data.length; i ++) {
+			bst.add(data[i]);
+		}
+		// 打印
+		BinaryTrees.println(bst);
+		BinaryTrees.println(bst, PrintStyle.INORDER);
 		
 	}
-
 }
