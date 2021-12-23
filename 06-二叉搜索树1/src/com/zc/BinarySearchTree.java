@@ -26,7 +26,7 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
 	}
 	
 	public void clear() {
-		
+
 	}
 	
 	// 添加
@@ -115,7 +115,6 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
 		}
 	}
 	
-	
 	@Override
 	public Object root() {
 		return root;
@@ -135,6 +134,5 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
 	public Object string(Object node) {
 		return ((Node<E>)node).element;
 	}
-	
 	
 }

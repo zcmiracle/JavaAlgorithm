@@ -84,7 +84,7 @@ public class Main {
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
+	
 		// 匿名函数 block-oc，闭包swift
 //		BinarySearchTree<Person> bst1 = new BinarySearchTree<>(new Comparator<Person>() {
 //			@Override
@@ -92,15 +92,11 @@ public class Main {
 //				return 0;
 //			}
 //		});
-
+		
 		test();
-		
 		test1();
-
 //		test2();		
-		
 		test3();
-	
-	
+		
 	}
 }
