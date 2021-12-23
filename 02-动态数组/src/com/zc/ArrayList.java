@@ -2,13 +2,13 @@ package com.zc;
 
 import java.util.Iterator;
 
-public class ArrayList {
+public class ArrayList<E> {
 
 	// 元素的数量
 	private int size;
 	
 	// 所有的元素
-	private int[] elements;
+	private E[] elements;
 
 	// 默认容量 大小为10
 	private static final int DEFAULT_CAPACITY = 2;
@@ -17,7 +17,7 @@ public class ArrayList {
 	// 有参构造函数
 	public ArrayList(int capacity) {
 		capacity = (capacity < DEFAULT_CAPACITY) ? DEFAULT_CAPACITY : capacity; 
-		elements = new int[capacity];
+		elements = (E[]) new Object[capacity];
 	}
 	
 	// 无参构造函数
@@ -27,6 +27,10 @@ public class ArrayList {
 	
 	// 清除所有元素
 	public void clear() {
+//		size = 0;
+		for (int i = 0; i < size; i++) {
+			elements[i] = null; // 清空
+		}
 		size = 0;
 	}
 	
@@ -41,12 +45,12 @@ public class ArrayList {
 	}
 	
 	// 是否包含某个元素
-	public boolean contains(int emelent) {
+	public boolean contains(E emelent) {
 		return indexOf(emelent) != ELEMENT_NOT_FOUND;
 	}
 	
 	// 添加元素到尾部
-	public void add(int element) {
+	public void add(E element) {
 //		elements[size] = element; // 添加数据
 //		size++;
 		// 等同于
@@ -55,7 +59,7 @@ public class ArrayList {
 	}
 	
 	// 获取index位置的元素
-	public int get(int index) {
+	public E get(int index) { 
 		if (index < 0 || index >= size)	{
 			// 抛出异常
 			throw new IndexOutOfBoundsException("Index:" + index + ", Size:" + size);
@@ -64,19 +68,19 @@ public class ArrayList {
 	}
 	
 	// 设置index位置的元素
-	public int set(int index, int element) {
+	public E set(int index, E element) {
 		if (index < 0 || index >= size)	{
 			// 抛出异常
 			throw new IndexOutOfBoundsException("Index:" + index + ", Size:" + size);
 		};
 		
-		int old = elements[index];
+		E old = elements[index];
 		elements[index] = element;		
 		return old;
 	}
 	
 	// 在index位置插入一个元素，从index后往后移动
-	public void add(int index, int element) {
+	public void add(int index, E element) {
 		if (index < 0 || index > size)	{ // 这里的判断要注意
 			// 抛出异常
 			throw new IndexOutOfBoundsException("Index:" + index + ", Size:" + size);
@@ -93,14 +97,14 @@ public class ArrayList {
 	}
 	
 	// 删除index位置的元素
-	public int remove(int index) {
+	public E remove(int index) {
 		if (index < 0 || index >= size)	{
 			// 抛出异常
 			throw new IndexOutOfBoundsException("Index:" + index + ", Size:" + size);
 		};
 
 		// 先记录之前的元素
-		int old = elements[index];
+		E old = elements[index];
 		for (int i = index+1; i <= size-1; i++) {
 			elements[i - 1] = elements[i];
 		}
@@ -109,7 +113,7 @@ public class ArrayList {
 	}
 	
 	// 查看元素的索引
-	public int indexOf(int element) {
+	public int indexOf(E element) {
 		for (int i = 0; i < size; i++) {
 			if (elements[i] == element) return i;
 		}
@@ -120,10 +124,11 @@ public class ArrayList {
 	public void ensureCapacity(int capacity) {
 		int oldCapacity = elements.length;
 		if (oldCapacity >= capacity) return; // 此处不需要扩容
+		
 		// 右移动 1, oldCapacity >> 1 相当于 oldCapacity / 2
 		// 新容量 是 旧容量的 1.5倍
 		int newCapaciy = oldCapacity + (oldCapacity >> 1);
-		int[] newElements = new int[newCapaciy];
+		E[] newElements = (E[])new Object[newCapaciy];
 		// 将之前elements的内容移动到 newElements 中
 		for (int i = 0; i < size; i++) {
 			newElements[i] = elements[i];
