@@ -31,7 +31,7 @@ public class Main {
 	
 	static void test() {
 		
-		ArrayList<Person> persons = new ArrayList<>();
+		ArrayList<Person> persons = new ArrayList<Person>();
 		persons.add(new Person(10, "James"));
 		persons.add(null);
 		persons.add(new Person(12, "Java"));
