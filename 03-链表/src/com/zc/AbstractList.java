@@ -1,6 +1,6 @@
 package com.zc;
 
-import java.util.List;
+//import java.util.List;
 
 // 抽象类
 public abstract class AbstractList <E> implements List<E> {
@@ -27,8 +27,6 @@ public abstract class AbstractList <E> implements List<E> {
 		add(size, element);
 	}
 	
-	
-
 	// 超过边界判断
 	protected void outOfBounds(int index) {
 		throw new IndexOutOfBoundsException("Index:" + index + "Size:" + size);

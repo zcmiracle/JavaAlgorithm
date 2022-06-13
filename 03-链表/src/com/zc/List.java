@@ -22,6 +22,16 @@ public interface List <E> {
 	// 获取index位置的元素
 	E get(int index);
 	
+	// 设置index位置的元素
+	E set(int index, E element);
 	
+	// 在index位置插入一个元素
+	void add(int index, E element);
+
+	// 删除index位置的元素
+	E remove(int index);
 	
+	// 查看元素的索引
+	int indexOf(E element);
+
 }

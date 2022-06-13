@@ -17,7 +17,8 @@ public class Person {
 	public String toString() {
 		return "Person [age=" + age + ", name=" + name + "]";
 	}
-
+	
+	// 消除警告
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void finalize() throws Throwable {
