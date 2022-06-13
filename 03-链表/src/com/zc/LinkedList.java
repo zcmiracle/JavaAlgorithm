@@ -1,9 +1,5 @@
 package com.zc;
 
-import java.util.Iterator;
-
-import javax.xml.soap.Node;
-
 public class LinkedList<E> extends AbstractList<E> {
 
 	private Node<E> first;

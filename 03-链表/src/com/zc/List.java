@@ -22,7 +22,7 @@ public interface List <E> {
 	// 获取index位置的元素
 	E get(int index);
 	
-	// 设置index位置的元素
+	// 设置index位置的元素，返回原来的元素
 	E set(int index, E element);
 	
 	// 在index位置插入一个元素
