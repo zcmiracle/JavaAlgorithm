@@ -1,7 +1,5 @@
 package com.zc;
 
-//import java.util.List;
-
 // 抽象类
 public abstract class AbstractList <E> implements List<E> {
 	// 元素的数量 协议
@@ -32,6 +30,7 @@ public abstract class AbstractList <E> implements List<E> {
 		throw new IndexOutOfBoundsException("Index:" + index + "Size:" + size);
 	}
 		
+	// 边界检查
 	protected void rangeCheck(int index) {
 		if (index < 0 || index >= size) {
 			outOfBounds(index);

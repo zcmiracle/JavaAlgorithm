@@ -10,7 +10,7 @@ public class LinkedList<E> extends AbstractList<E> {
 		Node<E> prev; // 前驱节点
 		Node<E> next; // 后继节点
 			
-		// 构造方法？
+		// 构造方法
 		public Node(Node<E> prev, E element, Node<E> next) {
 			this.prev = prev;
 			this.element = element;
@@ -39,8 +39,6 @@ public class LinkedList<E> extends AbstractList<E> {
 			return sBuilder.toString();
 		}		
 	}
-
-	
 	
 	@Override
 	public void clear() {
@@ -48,12 +46,6 @@ public class LinkedList<E> extends AbstractList<E> {
 		size = 0;
 		first = null;
 		last = null;
-	}
-
-	@Override
-	public boolean imEmpty() {
-		// TODO Auto-generated method stub
-		return false;
 	}
 
 	@Override
@@ -151,14 +143,14 @@ public class LinkedList<E> extends AbstractList<E> {
 		rangeCheck(index); // 检查
 		
 		if (index < (size >> 1)) {
-			// ✨✨✨
+			// 头节点
 			Node<E> node = first;
 			for (int i = 0; i < index; i++) {
 				node = node.next;
 			}
 			return node;
  		} else {
-			// ✨✨✨
+ 			// 尾结点
  			Node<E> node = last;
  			for (int i = size - 1; i > index; i--) {
 				node = node.prev;
@@ -166,6 +158,31 @@ public class LinkedList<E> extends AbstractList<E> {
  			return node;
  		}
 	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		StringBuilder sBuilder = new StringBuilder();
+		sBuilder.append("size = ").append(size).append(", [");
+		Node<E> node = first;
+		for (int i = 0; i < size; i++) {
+			if (i != 0) {
+				sBuilder.append(", ");
+			}
+			sBuilder.append(node);
+			node = node.next;
+		}
+		
+		sBuilder.append("]");
+		return sBuilder.toString();
+	}
+
+	@Override
+	public boolean imEmpty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
+	
 
 
