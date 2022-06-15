@@ -1,7 +1,7 @@
 package com.zc;
 
 // 抽象类
-public abstract class AbstractList <E> implements List<E> {
+public abstract class AbstractList<E> implements List<E> {
 	// 元素的数量 协议
 	protected int size;
 	
