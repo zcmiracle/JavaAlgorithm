@@ -1,5 +1,4 @@
-package com.zc;
-//import com.zc.AbstractList;
+package com.zc.list;
 
 public class LinkedList<E> extends AbstractList<E> {
 	private Node<E> first;
@@ -174,5 +173,11 @@ public class LinkedList<E> extends AbstractList<E> {
 
 		sBuilder.append("]");
 		return sBuilder.toString();
+	}
+
+	@Override
+	public boolean imEmpty() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

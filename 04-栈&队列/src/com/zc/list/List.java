@@ -1,4 +1,4 @@
-package com.zc;
+package com.zc.list;
 
 public interface List<E> {
 
