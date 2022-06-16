@@ -1,12 +1,15 @@
 package com.zc;
 
 import com.zc.list.ArrayList;
+import com.zc.list.LinkedList;
 import com.zc.list.List;
 
 public class Stack<E> {	
-	private List<E> list = new ArrayList<>();
+	private List<E> list = new ArrayList<>(); // 数组
+//	private List<E> list = new LinkedList<>(); // 链表方式
 	
 	// 清除元素
+	@SuppressWarnings("unused")
 	private void clear() {
 		list.clear();
 	}
@@ -31,6 +34,5 @@ public class Stack<E> {
 	public E top() {
 		return list.get(list.size() - 1);
 	}
-	
 	
 }
