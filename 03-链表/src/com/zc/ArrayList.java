@@ -113,10 +113,8 @@ public class ArrayList<E> extends AbstractList<E> {
 			if (i != 0) {
 				sBuilder.append(", ");
 			}
-
 			sBuilder.append(elements[i]);
 		}
-
 		sBuilder.append("]");
 		return sBuilder.toString();
 	}

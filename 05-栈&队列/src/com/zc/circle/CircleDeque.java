@@ -1,17 +1,13 @@
 package com.zc.circle;
 
-import java.util.Iterator;
-
 @SuppressWarnings("unchecked")
-// 循环队列
-public class CircleQueue<E> {
-
+public class CircleDeque<E> {
 	private int front;
 	private int size;
 	private E[] elements;
 	private static final int DEFAULT_CAPACITY = 10;
 	
-	public CircleQueue() {
+	public CircleDeque() {
 		elements = (E[]) new Object[DEFAULT_CAPACITY];
 	}
 	
@@ -31,14 +27,16 @@ public class CircleQueue<E> {
 		size = 0;
 	}
 	
-	public void enQueue(E element) {
-		// 保证要有capacity的容量
+	// 从尾部入队
+	public void enQueueRear(E element) {
 		ensureCapacity(size + 1);
+		
 		elements[index(size)] = element;
 		size++;
 	}
 	
-	public E deQueue() {
+	// 头部出队
+	public E deQueueFront() {
 		E frontElement = elements[front];
 		elements[front] = null;
 		front = index(1);
@@ -46,8 +44,31 @@ public class CircleQueue<E> {
 		return frontElement;
 	}
 	
+	// 从头部入队
+	public void enQueueFront(E element) {
+		ensureCapacity(size + 1);
+		
+		front = index(-1); // ???
+		elements[front] = element;
+		size++;
+	}
+	
+	// 从尾部出队
+	public E deQueueRear() {
+		int rearIndex = index(size - 1);
+		E rear = elements[rearIndex];
+		elements[rearIndex] = null;
+		size--;
+		return rear;
+	}
+	
+	
 	public E front() {
 		return elements[front];
+	}
+	
+	public E rear() {
+		return elements[index(size-1)];
 	}
 	
 	@Override
@@ -62,9 +83,9 @@ public class CircleQueue<E> {
 				sBuilder.append(", ");
 			}
 			sBuilder.append(elements[i]);
-		}		
+		}
 		sBuilder.append("]");
-		return sBuilder.toString();
+		return super.toString();
 	}
 	
 	// 保证要有capacity的容量
@@ -76,18 +97,22 @@ public class CircleQueue<E> {
 		int newCapacity = oldCapacity + (oldCapacity >> 1);
 		E[] newElements = (E[]) new Object[newCapacity];
 		for (int i = 0; i < size; i++) {
-			newElements[i] = elements[index(i)];
+			newElements[i] = elements[i];
 		}
 		elements = newElements;
 		
 		// 重置front
 		front = 0;
 	}
-	
-	// private 
+
+	// private
 	private int index(int index) {
 		index += front;
+		if (index < 0) {
+			return index + elements.length;
+		}
 		return index - (index >= elements.length ? elements.length : 0);
 	}
+
 	
 }
