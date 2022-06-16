@@ -18,8 +18,8 @@ public class Main {
 
 	public static void main(String[] args) {
 
-//		testList(new ArrayList<>()); // size = 8, [100, 200, 1, 2, 3, 4, 5, 500]
-		testList(new LinkedList<>());
+//		testList(new ArrayList<>()); 
+		testList(new LinkedList<>()); 
 		
 	}
 

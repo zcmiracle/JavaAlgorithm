@@ -133,4 +133,10 @@ public class DynamicArrayList<E> extends AbstractList<E> {
 		return ELEMENT_NOT_FOUND;
 	}
 
+	@Override
+	public boolean imEmpty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

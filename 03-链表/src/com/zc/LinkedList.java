@@ -1,7 +1,7 @@
 package com.zc;
+//import com.zc.AbstractList;
 
 public class LinkedList<E> extends AbstractList<E> {
-
 	private Node<E> first;
 	private Node<E> last;
 
@@ -42,31 +42,26 @@ public class LinkedList<E> extends AbstractList<E> {
 
 	@Override
 	public void clear() {
-		// TODO Auto-generated method stub
 		size = 0;
 		first = null;
 		last = null;
 	}
 
 	@Override
-	public E get(int index) {
-		// TODO Auto-generated method stub
+    public E get(int index) {
 		return node(index).element;
 	}
 
-	// 设置index位置的元素，返回原来的元素
 	@Override
 	public E set(int index, E element) {
-		// TODO Auto-generated method stub
-		Node<E> node = node(index);
-		E old = node.element;
+        Node<E> node = node(index);
+		E oldElement = node.element;
 		node.element = element;
-		return old;
+		return oldElement;
 	}
-
+	
 	@Override
-	public void add(int index, E element) {
-		// TODO Auto-generated method stub
+    public void add(int index, E element) {
 		rangeCheckForAdd(index);
 
 		// size == 0;
@@ -91,6 +86,8 @@ public class LinkedList<E> extends AbstractList<E> {
 				prev.next = node;
 			}
 		}
+		
+		size++; // 此处没有添加报错了
 	}
 
 	@Override

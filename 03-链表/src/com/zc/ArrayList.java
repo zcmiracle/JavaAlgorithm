@@ -1,7 +1,5 @@
 package com.zc;
 
-import java.util.Iterator;
-
 // 去除警告
 @SuppressWarnings("unchecked")
 public class ArrayList<E> extends AbstractList<E> {
@@ -78,13 +76,11 @@ public class ArrayList<E> extends AbstractList<E> {
 	public int indexOf(E element) {
 		if (element == null) {
 			for (int i = 0; i < size; i++) {
-				if (elements[i] == null)
-					return i;
+				if (elements[i] == null) return i;
 			}
 		} else {
 			for (int i = 0; i < size; i++) {
-				if (element.equals(elements[i]))
-					return i;
+				if (element.equals(elements[i])) return i;
 			}
 		}
 		return ELEMENT_NOT_FOUND;
@@ -124,6 +120,5 @@ public class ArrayList<E> extends AbstractList<E> {
 		sBuilder.append("]");
 		return sBuilder.toString();
 	}
-
 
 }
