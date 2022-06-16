@@ -1,7 +1,6 @@
 package com.zc;
 
-import java.util.Iterator;
-
+@SuppressWarnings("unchecked")
 public class ArrayList<E> {
 
 	// 元素的数量
@@ -11,7 +10,7 @@ public class ArrayList<E> {
 	private E[] elements;
 
 	// 默认容量 大小为10
-	private static final int DEFAULT_CAPACITY = 2;
+	private static final int DEFAULT_CAPACITY = 10;
 	private static final int ELEMENT_NOT_FOUND = -1;
 	
 	// 有参构造函数
@@ -27,7 +26,6 @@ public class ArrayList<E> {
 	
 	// 清除所有元素
 	public void clear() {
-//		size = 0;
 		for (int i = 0; i < size; i++) {
 			elements[i] = null; // 清空
 		}
@@ -51,40 +49,27 @@ public class ArrayList<E> {
 	
 	// 添加元素到尾部
 	public void add(E element) {
-//		elements[size] = element; // 添加数据
-//		size++;
-		// 等同于
-//		elements[size++] = element;
 		add(size, element); // 直接将元素添加到最后面 size 位置
 	}
 	
 	// 获取index位置的元素
 	public E get(int index) { 
-		if (index < 0 || index >= size)	{
-			// 抛出异常
-			throw new IndexOutOfBoundsException("Index:" + index + ", Size:" + size);
-		};
+		rangeCheck(index);
 		return elements[index];
 	}
 	
 	// 设置index位置的元素
 	public E set(int index, E element) {
-		if (index < 0 || index >= size)	{
-			// 抛出异常
-			throw new IndexOutOfBoundsException("Index:" + index + ", Size:" + size);
-		};
+		rangeCheck(index);
 		
-		E old = elements[index];
+		E oldElement = elements[index];
 		elements[index] = element;		
-		return old;
+		return oldElement;
 	}
 	
 	// 在index位置插入一个元素，从index后往后移动
 	public void add(int index, E element) {
-		if (index < 0 || index > size)	{ // 这里的判断要注意
-			// 抛出异常
-			throw new IndexOutOfBoundsException("Index:" + index + ", Size:" + size);
-		};
+		rangeCheckForAdd(index);
 		
 		// 判断要不要扩容
 		ensureCapacity(size + 1);
@@ -98,65 +83,78 @@ public class ArrayList<E> {
 	
 	// 删除index位置的元素
 	public E remove(int index) {
-		if (index < 0 || index >= size)	{
-			// 抛出异常
-			throw new IndexOutOfBoundsException("Index:" + index + ", Size:" + size);
-		};
+		rangeCheck(index);
 
 		// 先记录之前的元素
-		E old = elements[index];
-		for (int i = index+1; i <= size-1; i++) {
+		E oldElement = elements[index];
+		for (int i = index + 1; i <= size-1; i++) {
 			elements[i - 1] = elements[i];
 		}
-		size--;
-		return old;
+		elements[--size] = null; // 将删除的置为null
+		return oldElement;
 	}
 	
 	// 查看元素的索引
 	public int indexOf(E element) {
-		for (int i = 0; i < size; i++) {
-			if (elements[i] == element) return i;
-		}
+		if (element == null) {
+			for (int i = 0; i < size; i++) {
+				if (elements[i] == null) return i;
+			}
+		} else {
+			for (int i = 0; i < size; i++) {
+				if (elements[i].equals(element)) return i;
+			}
+		}		
 		return ELEMENT_NOT_FOUND; // -1
 	}
-	
-	// 扩容(保证要有capacity)的容量
-	public void ensureCapacity(int capacity) {
+
+	// 保证capacity的容量
+	private void ensureCapacity(int capacity) {
 		int oldCapacity = elements.length;
-		if (oldCapacity >= capacity) return; // 此处不需要扩容
+		if (oldCapacity >= capacity) return;
 		
-		// 右移动 1, oldCapacity >> 1 相当于 oldCapacity / 2
-		// 新容量 是 旧容量的 1.5倍
-		int newCapaciy = oldCapacity + (oldCapacity >> 1);
-		E[] newElements = (E[])new Object[newCapaciy];
-		// 将之前elements的内容移动到 newElements 中
+		// 新容量是旧容量的1.5倍
+		int newCapacity = oldCapacity + (oldCapacity >> 1);
+		E[] newElements = (E[]) new Object[newCapacity];
 		for (int i = 0; i < size; i++) {
 			newElements[i] = elements[i];
 		}
 		elements = newElements;
-		
-		System.out.println(oldCapacity + "扩容为" + newCapaciy);
+		System.out.println(oldCapacity + "扩容为" + newCapacity);
 	}
 	
-	// 打印
+	
+	
+	private void outOfBounds(int index) {
+		throw new IndexOutOfBoundsException("Index:" + index + ", size:" + size);
+	}
+
+	// 检查
+	private void rangeCheck(int index) {
+		if (index < 0 || index >= size) {
+			outOfBounds(index);
+		}
+	}
+	
+	private void rangeCheckForAdd(int index) {
+		if (index < 0 || index > size) {
+			outOfBounds(index);
+		}
+	}
+	
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		// Java中字符串拼接用 StringBuilder
-		StringBuilder string = new StringBuilder();
-		string.append("size=").append(size).append("，[");
-		
+
+		StringBuilder sBuilder = new StringBuilder();
+		sBuilder.append("size=").append(size).append(", [");
 		for (int i = 0; i < size; i++) {
-//			if (i != 0) {
-//				string.append("，");
-//			}
-			string.append(elements[i]);
-			if (i != size - 1) {
-				string.append("，");
-			}
+			if (i != 0) {
+				sBuilder.append(", ");
+			}	
+			sBuilder.append(elements[i]);
 		}
-		string.append("]");
-		return string.toString();
+		sBuilder.append("]");
+		return sBuilder.toString();
 	}
 	
 }
