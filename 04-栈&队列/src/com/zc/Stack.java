@@ -4,6 +4,7 @@ import com.zc.list.ArrayList;
 import com.zc.list.LinkedList;
 import com.zc.list.List;
 
+@SuppressWarnings("unused")
 public class Stack<E> {	
 	private List<E> list = new ArrayList<>(); // 数组
 //	private List<E> list = new LinkedList<>(); // 链表方式
