@@ -175,9 +175,4 @@ public class LinkedList<E> extends AbstractList<E> {
 		return sBuilder.toString();
 	}
 
-	@Override
-	public boolean imEmpty() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 }

@@ -120,11 +120,4 @@ public class ArrayList<E> extends AbstractList<E> {
 		sBuilder.append("]");
 		return sBuilder.toString();
 	}
-
-	@Override
-	public boolean imEmpty() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 }
