@@ -154,25 +154,11 @@ public class Main {
 		BinaryTrees.print(binarySearchTree);
 		System.out.println(binarySearchTree.isComplete()); // 是否是完全二叉树
 		
-//		binarySearchTree.levelOrder(new Visitor<Integer>() {
-//            public void visit(Integer element) {
-//                System.out.print("_" + element + "_ ");
-//            }
-//        });
-//        
-//		binarySearchTree.inorder(new Visitor<>() {
-//            public void visit(Integer element) {
-//                System.out.print("_" + (element + 3) + "_ ");
-//            }
-//        });
-//		
 		// 层序遍历
-//		binarySearchTree.levelOrdertTraversal();		
-		
+//		binarySearchTree.levelOrdertTraversal();				
 	}
 	
-	
-	public static void main(String[] args) {
+	static void main(String[] args) {
 		// TODO Auto-generated method stub		
 //		test();
 //		test1();
@@ -181,7 +167,6 @@ public class Main {
 //		test4();
 //		test5();
 		test6();
-
 
 	}
 }
