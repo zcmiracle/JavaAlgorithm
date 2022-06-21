@@ -3,9 +3,6 @@ package com.zc;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Queue;
-
-import com.mj.BinarySearchTree.Node;
-import com.mj.BinarySearchTree.Visitor;
 import com.zc.printer.BinaryTreeInfo;
 
 @SuppressWarnings("unchecked")
