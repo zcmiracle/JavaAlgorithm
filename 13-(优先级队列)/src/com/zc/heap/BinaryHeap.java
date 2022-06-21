@@ -1,8 +1,6 @@
 package com.zc.heap;
+
 import java.util.Comparator;
-
-import com.zc.printer.BinaryTreeInfo;
-
 
 /**
  * 二叉堆（大顶堆）
@@ -10,7 +8,7 @@ import com.zc.printer.BinaryTreeInfo;
  *
  * @param <E>
  */
-public class BinaryHeap<E> extends AbstractHeap<E> implements BinaryTreeInfo {
+public class BinaryHeap<E> extends AbstractHeap<E> {
 	private E[] elements;
 	private static final int DEFAULT_CAPACITY = 10;
 	
@@ -110,34 +108,7 @@ public class BinaryHeap<E> extends AbstractHeap<E> implements BinaryTreeInfo {
 		}
 		return root;
 	}
-
-	@Override
-	public Object root() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public Object left(Object node) {
-		// TODO Auto-generated method stub
-		int index = ((int)node << 1) + 1; // PPT有说明
-		return index >= size ? null : index;
-	}
-
-	@Override
-	public Object right(Object node) {
-		// TODO Auto-generated method stub
-		int index = ((int)node << 1) + 2;
-		return index >= size ? null : index;
-	}
-
-	@Override
-	public Object string(Object node) {
-		// TODO Auto-generated method stub
-		return elements[(int)node];
-	}
 	
-
 	/**
 	 * 批量建堆
 	 */
