@@ -3,8 +3,8 @@ import java.util.Comparator;
 
 import com.zc.printer.BinaryTreeInfo;
 
+@SuppressWarnings("unchecked")
 public class BinarySearchTree<E> implements BinaryTreeInfo {
-	
 	private int size;
 	private Node<E> root; // 根节点
 	private Comparator<E> comparator; // 比较器
@@ -105,9 +105,7 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
 		E element;
 		Node<E> left;
 		Node<E> right;
-		@SuppressWarnings("unused")
-		Node<E> parent;
-		
+		Node<E> parent;		
 		// 构造函数
 		public Node(E element, Node<E> parent) {
 			this.element = element;
