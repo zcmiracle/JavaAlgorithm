@@ -3,13 +3,12 @@ package com.zc;
 import java.util.Comparator;
 import java.util.Iterator;
 
+import com.zc.file.Files;
 import com.zc.printer.BinaryTreeInfo;
 import com.zc.printer.BinaryTrees;
 import com.zc.printer.BinaryTrees.PrintStyle;
 
 public class Main {
-
-//	BinaryTreeI
 	
 	public static class PersonComparator1 implements Comparator<Person> {
 		public int compare(Person e1, Person e2) {
@@ -51,8 +50,14 @@ public class Main {
 		BinaryTrees.println(bst1);
 	}
 	
-	
 	static void test2() {
+		// 匿名函数 block-oc，闭包swift
+//		BinarySearchTree<Person> bst1 = new BinarySearchTree<>(new Comparator<Person>() {
+//			@Override
+//			public int compare(Person p1, Person p2) {
+//				return 0;
+//			}
+//		});
 		BinarySearchTree<Person> bst2 = new BinarySearchTree<>(new PersonComparator1());
 		bst2.add(new Person(12));
 		bst2.add(new Person(15));
@@ -79,24 +84,104 @@ public class Main {
 		for (int i = 0; i < 30; i ++) {
 			bst.add((int)(Math.random() * 100));
 		}
-		BinaryTrees.println(bst);		
+		// 写入文件
+		String string = BinaryTrees.printString(bst);
+		string += "\n";
+		Files.writeToFile("~/Desktop/Project/JavaAlgorithm", string, true);
+		
+//		BinaryTrees.println(bst);		
 	} 
 	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	static void test4() {
+		BinaryTrees.println(new BinaryTreeInfo() {
+			
+			@Override
+			public Object string(Object node) {
+				// TODO Auto-generated method stub
+				return node.toString() + "_";
+			}
+			
+			@Override
+			public Object root() {
+				// TODO Auto-generated method stub
+				return "A";
+			}
+			
+			@Override
+			public Object right(Object node) {
+				// TODO Auto-generated method stub
+				if (node.equals("A")) return "C";
+				if (node.equals("C")) return "E";
+				return null;
+			}
+			
+			@Override
+			public Object left(Object node) {
+				// TODO Auto-generated method stub
+				if (node.equals("A")) return "B";
+				if (node.equals("C")) return "D";
+				return null;
+			}
+		});
+	}
+
 	
-		// 匿名函数 block-oc，闭包swift
-//		BinarySearchTree<Person> bst1 = new BinarySearchTree<>(new Comparator<Person>() {
-//			@Override
-//			public int compare(Person p1, Person p2) {
-//				return 0;
-//			}
-//		});
+	static void test5() {
+		BinarySearchTree<Person> bst = new BinarySearchTree<>();
+        bst.add(new Person(10, "jack"));
+        bst.add(new Person(12, "rose"));
+        bst.add(new Person(8, "James"));
+        bst.add(new Person(9, "michael"));
+
+        BinaryTrees.print(bst);
+	}
 		
+	static void test6() {
+		Integer data[] = new Integer[] {
+                7, 4, 9, 2, 5
+		};
+		
+		BinarySearchTree<Integer> binarySearchTree = new BinarySearchTree<>();
+		for (int i = 0; i < data.length; i++) {
+			binarySearchTree.add(data[i]);
+		}
+		
+//		BinarySearchTree<Integer> binarySearchTree = new BinarySearchTree<>();
+//		for (int i = 0; i < 10; i++) {
+//			binarySearchTree.add((int)(Math.random() * 100));
+//		}
+		
+		BinaryTrees.print(binarySearchTree);
+		System.out.println(binarySearchTree.isComplete()); // 是否是完全二叉树
+		
+//		binarySearchTree.levelOrder(new Visitor<Integer>() {
+//            public void visit(Integer element) {
+//                System.out.print("_" + element + "_ ");
+//            }
+//        });
+//        
+//		binarySearchTree.inorder(new Visitor<>() {
+//            public void visit(Integer element) {
+//                System.out.print("_" + (element + 3) + "_ ");
+//            }
+//        });
+//		
+		// 层序遍历
+//		binarySearchTree.levelOrdertTraversal();		
+		
+	}
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub		
 //		test();
 //		test1();
 //		test2();		
-		test3();
-		
+//		test3();
+//		test4();
+//		test5();
+		test6();
+
+
 	}
 }

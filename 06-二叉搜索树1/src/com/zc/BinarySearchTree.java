@@ -4,6 +4,8 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Queue;
 
+import com.mj.BinarySearchTree.Node;
+import com.mj.BinarySearchTree.Visitor;
 import com.zc.printer.BinaryTreeInfo;
 
 @SuppressWarnings("unchecked")
@@ -291,11 +293,11 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
 	
 	
 	// 层序遍历
-	public void levelorder(Visitor<E> visitor) {
-		if (root == null || visitor.stop) return;
+	public void levelOrder(Visitor<E> visitor) {
+		if (root == null || visitor == null) return;
 		
 		Queue<Node<E>> queue = new LinkedList<>();
-		queue.offer(root); 
+		queue.offer(root);
 		
 		while (!queue.isEmpty()) {
 			Node<E> node = queue.poll();
@@ -303,14 +305,12 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
 			
 			if (node.left != null) {
 				queue.offer(node.left);
-			} 
+			}
 			
 			if (node.right != null) {
 				queue.offer(node.right);
 			}
 		}
-		
-		postorder(root, visitor);
 	}
 	
 	
@@ -423,10 +423,9 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
 			throw new IllegalArgumentException("element must not be null");
 		}
 	}
-
+	
 	public static abstract class Visitor<E> {
 		boolean stop;
-
 		/**
 		 * 如果返回true，就代表停止遍历
 		 * 
@@ -435,6 +434,7 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
 		 */
 		public abstract boolean visit(E element);
 	}
+
 
 	/**
 	 * 前驱节点：predecessor
