@@ -7,7 +7,7 @@ import com.zc.printer.BinaryTreeInfo;
 
 @SuppressWarnings("unchecked")
 public class BinarySearchTree<E> implements BinaryTreeInfo {
-	private int size;
+	private int size; // 元素的数量
 	private Node<E> root; // 根节点
 	private Comparator<E> comparator; // 比较器
 
@@ -55,13 +55,20 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
 
 	/**
 	 * 添加节点
+	 * 步骤：
+	 * 1、找到父节点 parent
+	 * 2、创建新节点 node
+	 * 3、parent.left = node || parent.right = node
+	 * 注意：
+	 * 遇到相等的值：直接覆盖旧值
+	 * 
 	 * @param element
 	 */
 	public void add(E element) {
 		// 首先检测是否为空
 		elementNotNullCheck(element);
 
-		// 添加第一个节点
+		// 根节点为空null，相当于添加第一个节点
 		if (root == null) {
 			root = new Node<>(element, null);
 			size++;
@@ -70,24 +77,24 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
 
 		// 添加的不是第一个节点
 		// 找到父节点
-		Node<E> parent = root;
+		Node<E> parent = root; // 要找的父节点
 		Node<E> node = root;
 		int cmp = 0;
 		while (node != null) {
-			cmp = compare(element, node.element);
-			// 保留父节点
-			parent = node;
-			if (cmp > 0) {
+			cmp = compare(element, node.element); 
+			parent = node; // 保留父节点
+			if (cmp > 0) { 
 				node = node.right;
-			} else if (cmp < 0) {
+			} else if (cmp < 0) { // 
 				node = node.left;
 			} else { // 相等
+				node.element = element; // 覆盖旧值
 				return;
 			}
 		}
 
-		// 看插入到父节点的哪个位置
-		Node<E> newNode = new Node<>(element, parent);
+		// 找到父节点，看看插入到父节点的哪个位置
+		Node<E> newNode = new Node<>(element, parent); // 创建新节点
 		if (cmp > 0) {
 			parent.right = newNode;
 		} else {
@@ -97,7 +104,30 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
 	}
 
 	/**
-	 * 删除
+	 * 删除节点：
+	 * 1、删除节点-叶子节点：直接删除即可
+	 * 2、删除节点-度为1的节点：用子节点 替代 原节点的位置	
+	 * 		2.1 如果删除的节点 不是根节点
+	 * 		child = node.left || child = node.right
+	 *   	用child 替代 node 的位置
+	 *   
+	 *   		2.1.1 如果 node 是左子节点 
+	 *   			child.parent = node.parent 
+	 * 	 			node.parent.left = child
+	 * 	
+	 * 	 		2.1.2 如果 node 是右子节点
+	 * 	 			child.parent = node.parent
+	 * 	 			node.parent.right = child
+	 * 	  
+	 *   	2.2 如果删除的节点 是根节点
+	 *   	root = child
+	 *   	child.parent = null
+	 *   
+	 * 3、删除节点-度为2的节点：
+	 * 		3.1 先用前驱或者后继节点的值 覆盖 原节点的值，
+	 * 		3.2 然后删除相应的前驱或者后继节点
+	 * 		3.3 如果一个节点的度为2，那么它的前驱、后继节点的度只可能是 1 和 0
+	 * 	
 	 * @param element
 	 */
 	public void remove(E element) {
