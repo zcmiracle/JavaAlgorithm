@@ -1,8 +1,15 @@
 package com.zc.sort.cmp;
 import com.zc.sort.Sort;
 
-public class BubbleSort1<T extends Comparable<T>> extends Sort<T> {
 
+/**
+ * 冒泡排序
+ * @author fearless
+ *
+ * @param <T>
+ */
+
+public class BubbleSort1<T extends Comparable<T>> extends Sort<T> {
 	@Override
 	protected void sort() {
 		// TODO Auto-generated method stub
