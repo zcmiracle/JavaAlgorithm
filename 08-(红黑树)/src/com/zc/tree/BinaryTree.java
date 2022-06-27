@@ -4,9 +4,10 @@ import com.zc.printer.BinaryTreeInfo;
 import java.util.LinkedList;
 import java.util.Queue;
 
-
 @SuppressWarnings("unchecked")
 
+
+// 二叉搜索树
 public class BinaryTree<E> implements BinaryTreeInfo {
 	
 	protected int size;

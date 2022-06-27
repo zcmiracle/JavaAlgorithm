@@ -1,6 +1,7 @@
 package com.zc.tree;
 import java.util.Comparator;
 
+// 二叉搜索树
 public class BST<E> extends BinaryTree<E> {
 	private Comparator<E> comparator;
 	
