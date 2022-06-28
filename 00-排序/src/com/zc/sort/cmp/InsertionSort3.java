@@ -6,6 +6,11 @@ import com.zc.sort.Sort;
 
 public class InsertionSort3<T extends Comparable<T>> extends Sort<T> {
 
+	/**
+	 * 要求二分搜索返回的插入位置：第1个大于 value 的元素位置
+	 * value < middle, [begin, middle) 范围内二分搜索
+	 * value >= middle, [middle+1, end) 范围内二分搜索
+	 */
 	@Override
 	protected void sort() {
 		// TODO Auto-generated method stub
