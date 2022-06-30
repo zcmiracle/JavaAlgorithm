@@ -35,6 +35,7 @@ public class Main {
 				new BubbleSort3(),
 				new SelectionSort(),
 				new InsertionSort1(),
+//				new InsertionSort2(),
 				new HeapSort(),
 				new QuickSort()
 				);

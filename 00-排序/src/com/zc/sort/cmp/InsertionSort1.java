@@ -1,7 +1,5 @@
 package com.zc.sort.cmp;
 
-import java.util.Iterator;
-
 import com.zc.sort.Sort;
 
 public class InsertionSort1<T extends Comparable<T>> extends Sort<T> {
