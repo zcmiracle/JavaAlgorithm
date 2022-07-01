@@ -9,6 +9,7 @@ import com.zc.sort.cmp.BubbleSort1;
 import com.zc.sort.cmp.BubbleSort2;
 import com.zc.sort.cmp.BubbleSort3;
 import com.zc.sort.cmp.SelectionSort;
+import com.zc.sort.cmp.ShellSort;
 import com.zc.sort.cmp.HeapSort;
 import com.zc.sort.cmp.InsertionSort1;
 import com.zc.sort.cmp.QuickSort;
@@ -28,7 +29,7 @@ public class Main {
 //				42, 783, 110, 295, 36, 139, 437, 747, 3, 82, 406, 
 //				146, 773, 613, 873, 713, 439, 721, 536, 58, 621, 177};
 		
-		Integer[] array = Integers.random(10000, 1, 9999999);
+		Integer[] array = Integers.random(100, 1, 99999);
 		testSorts(array, 
 				new BubbleSort1(), 
 				new BubbleSort2(),
@@ -37,7 +38,8 @@ public class Main {
 				new InsertionSort1(),
 //				new InsertionSort2(),
 				new HeapSort(),
-				new QuickSort()
+				new QuickSort(),
+				new ShellSort()
 				);
 	}
 	
